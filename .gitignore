@@ -4,6 +4,7 @@
 # .tfstate files
 *.tfstate
 *.tfstate.*
+.terraform.lock.hcl
 
 # Crash log files
 crash.log
@@ -30,3 +31,4 @@ override.tf.json
 
 #GCP Credentials
 devco-382722-fdefbb74e690.json
+terpel-infra-iac-demo-e8f06f093d05.json
