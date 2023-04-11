@@ -1,5 +1,5 @@
 provider "google" {
-  credentials = "${file("./terpel-infra-iac-demo-e8f06f093d05.json")}"
+  credentials = "${file("./terpel-infra-iac-demo-393093fddaf5.json")}"
   project = "terpel-infra-iac-demo"
   region  = "us-east1"
   zone    = "us-east1-b"
@@ -40,7 +40,7 @@ resource "google_compute_instance" "vm_instance" {
   network_interface {
     network    = google_compute_network.vm_network.self_link
     subnetwork = google_compute_subnetwork.vm_subnet.self_link
-    access_config {}
+    # access_config {}
   }
 
   metadata_startup_script = <<-EOF
