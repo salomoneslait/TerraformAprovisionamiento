@@ -12,3 +12,7 @@ variable "project" {
 variable "credentials-path" {
   type = string
 }
+
+variable "region" {
+  type = string
+}
