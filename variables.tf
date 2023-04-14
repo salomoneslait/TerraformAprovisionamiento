@@ -8,3 +8,7 @@ variable "project" {
   type = string
   default = "terpel-infra-iac-demo"
 }
+
+variable "credentials-path" {
+  type = string
+}
