@@ -73,4 +73,36 @@ resource "google_compute_instance" "linux-machine" {
     # access_config {}
   }
 
+  service_account {
+    email  = google_service_account.linux-instance-sa.email
+    #scopes = ["userinfo-email", "compute-ro", "storage-ro"]
+    scopes = [
+      "https://www.googleapis.com/auth/devstorage.read_only",
+      "https://www.googleapis.com/auth/cloud-platform"
+    ]
+  }
+
+}
+
+resource "google_service_account" "linux-instance-sa" {
+  project = var.project
+  account_id   = "linux-instance-sa-2"
+  display_name = "linux Instance Service Account"
+}
+
+resource "google_project_iam_custom_role" "my-role" {
+  role_id     = "myrole"
+  title       = "My Role"
+  description = "Custom role for my service account"
+  permissions = [
+    "storage.buckets.list"
+  ]
+}
+
+resource "google_project_iam_binding" "my-service-account-binding" {
+  project = var.project
+  role    = google_project_iam_custom_role.my-role.id
+  members = [
+    "serviceAccount:${google_service_account.linux-instance-sa.email}",
+  ]
 }
